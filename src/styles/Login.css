@@ -1,0 +1,65 @@
+* {
+  font-family:  'Trebuchet MS', sans-serif;
+}
+
+button:hover {
+  cursor: pointer;
+}
+
+body {
+  background-color: #9fddff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.login h1 {
+  text-align: center
+}
+
+.login__input {
+  background-color: #9fffcf;
+  display: inline-block;
+  padding: 20px;
+  border-radius: 12px;
+}
+
+.login__input label {
+  display: block;
+  padding: 10px 0 5px 0;
+}
+
+.login__input input {
+  padding: 4px;
+  text-indent: 4px;
+}
+
+.btn-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.btn-container button {
+  margin: 40px 0 10px 0;
+  padding: 6px 12px;
+}
+
+.consult {
+  border: 2px solid #fff;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.btn-help {
+  width: 100%;
+}
+
+.help {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.help label {
+  width: 100%;
+}
