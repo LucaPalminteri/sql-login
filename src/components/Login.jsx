@@ -2,7 +2,7 @@ import React from "react";
 import "../styles/Login.css";
 import { useState, useEffect } from "react";
 
-export default function Login() {
+export default function Login(props) {
   const [dataRow, setDataRow] = useState([]);
   const [isConsult, setIsConsult] = useState(false);
   const [isHelp, setIsHelp] = useState(false);
@@ -25,7 +25,7 @@ export default function Login() {
   if(!isHelp && isConsult) setIsConsult(false)
 
   function singupHandler() {
-    alert('create acount')
+    
   }
 
   function loginHandler() {
@@ -39,7 +39,10 @@ export default function Login() {
       )
         response = true;
     });
-    if (response) alert("Successfully logged");
+    if (response) {
+      alert("Successfully logged");
+      props.changeValue()
+    } 
     else alert("wrong");
   }
 

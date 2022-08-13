@@ -1,18 +1,14 @@
-const PORT = 3000;
-const mysql = require('mysql')
 const express = require('express');
-const path = require('path')
-const fs = require('fs');
-const app = express();
 const cors = require('cors');
+const db = require('./db')
+
+const PORT = 3000;
+
+const app = express();
 app.use(cors());
+app.use(express.json());
 
 // Express
-
-// app.get('/', function (req, res) {
-//     res.writeHead(200, {'content-type': 'text/html'})
-//     fs.createReadStream('index.html').pipe(res);
-// })
 
 const server = app.listen(PORT, function () {
    const host = server.address().address
@@ -21,44 +17,53 @@ const server = app.listen(PORT, function () {
    console.log("Example app listening at http://", host, port)
 })
 
+// Route to get all posts
 
-// Database MySql
-
-const conection = mysql.createConnection(
-    {host: 'localhost',
-    user: 'user',
-    password: 'user',
-    database: 'platziblog'
-    }
-)
-
-conection.connect( (err)=> {
+db.connect( (err)=> {
     if(err) throw err
     console.log('conection works');
 })
 
-function insertInSQL() {
-
+// db.query("SELECT * FROM usuarios", (err,result)=>{
+//     app.get("/users", (req,res)=>{
+//         console.log(result);
+//         if(err) {
+//         console.log(err)
+//         } 
+//     res.send(result)
+//     });   
+// });
+function insertInSQL(q) {
+    db.query(q, (err,result)=>{
+        if(err) {
+        console.log(err)
+        } 
+        console.log(result)
+    }); 
 }
 
-// const insert = `INSERT INTO usuarios 
-//         (email,
-//         login,
-//         nickname,
-//         password) 
-//         VALUES 
-//         ('pedroExample@gmail.com',
-//         'PedroExample',
-//         'NickPedrExa',
-//         'password'
-//         )`
-//const insert = "DELETE FROM usuarios WHERE email=NULL"
-
-// conection.query(insert,(err,rows) => {
+// db.query('', (err,rows)=> {
 //     if(err) throw err
 // })
 
-conection.query('SELECT * FROM usuarios', (err,rows)=> {
+//const insert = "DELETE FROM usuarios WHERE email=NULL"
+
+// const insert = `INSERT INTO usuarios
+// (nickname,
+//     email,
+//     login,
+//     password) 
+// VALUES
+// (1,
+//     1,
+//     1,
+//     1)`
+
+// db.query(insert,(err,rows) => {
+//     if(err) throw err
+// })
+
+db.query('SELECT * FROM usuarios', (err,rows)=> {
     if(err) throw err
     usuarios = [];
     rows.forEach(row => {
@@ -76,4 +81,4 @@ conection.query('SELECT * FROM usuarios', (err,rows)=> {
      })
 })
 
-conection.end();
+db.end();
